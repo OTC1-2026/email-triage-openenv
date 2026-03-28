@@ -1,0 +1,49 @@
+name: email-triage-openenv
+version: "1.0.0"
+description: >
+  A real-world OpenEnv-compatible reinforcement learning environment for email triage.
+
+author: "OTC1-2026"
+license: MIT
+tags:
+  - openenv
+  - email-triage
+  - nlp
+  - agent
+
+tasks:
+  - name: easy
+    description: Classify a single email into one of 5 categories
+    difficulty: easy
+    max_steps: 1
+    score_range: [0.0, 1.0]
+
+  - name: medium
+    description: Prioritise 10 emails and draft replies for top-3 urgent
+    difficulty: medium
+    max_steps: 20
+    score_range: [0.0, 1.0]
+
+  - name: hard
+    description: Manage a 30-email inbox in 20 steps with SLA deadlines
+    difficulty: hard
+    max_steps: 20
+    score_range: [0.0, 1.0]
+
+endpoints:
+  reset:    POST /reset
+  step:     POST /step
+  state:    GET  /state
+  tasks:    GET  /tasks
+  grader:   POST /grader
+  baseline: GET  /baseline
+  health:   GET  /health
+
+docker:
+  base_image: python:3.11-slim
+  port: 7860
+
+huggingface:
+  space_sdk: docker
+  tags:
+    - openenv
