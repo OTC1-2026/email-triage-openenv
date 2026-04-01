@@ -1,9 +1,9 @@
 import requests
 
-BASE_URL = "https://otc1-2026-email-triage-openenv.hf.space"
+BASE = "https://otc1-2026-email-triage-openenv.hf.space"
 
-def run_episode():
-    r = requests.post(f"{BASE_URL}/reset", json={"task": "easy"})
+def run():
+    r = requests.post(f"{BASE}/reset", json={"task": "easy"})
     obs = r.json()["observation"]
 
     email = obs["current_email"]
@@ -24,10 +24,8 @@ def run_episode():
         }
     }
 
-    step = requests.post(f"{BASE_URL}/step", json=action)
-    result = step.json()
-
-    return result
+    result = requests.post(f"{BASE}/step", json=action)
+    print(result.json())
 
 if __name__ == "__main__":
-    print(run_episode())
+    run()
