@@ -1,3 +1,6 @@
 [[package]]
 name = "email-triage-openenv"
 version = "1.0.0"
+
+[metadata]
+requires-python = ">=3.10"
