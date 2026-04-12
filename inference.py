@@ -28,4 +28,15 @@ def run():
     print(result.json())
 
 if __name__ == "__main__":
-    run()
+    import os
+
+    print("[START] Email Triage Environment", flush=True)
+
+    port = int(os.environ.get("PORT", 7860))
+
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False
+    )
+    
